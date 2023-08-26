@@ -1,10 +1,15 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
+AUTH_TOKEN = os.getenv("SHEETY_BEARER")
 
 
 class Sheet:
     def __init__(self, sheet="https://api.sheety.co/933220403ff9a29d1549da128febf048/flightDeals/prices"):
         self.headers = {
-            'Authorization': 'Bearer secret'
+            'Authorization': AUTH_TOKEN
         }
         self.sheet = sheet
 
@@ -29,7 +34,7 @@ class Sheet:
             "price": {
                 key: msg
             }
-                }
+        }
         put_url = self.sheet + f"/{row_id}"
         send = requests.put(put_url, headers=self.headers, json=json, verify=False)
         print(send.text)

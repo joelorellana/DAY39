@@ -1,5 +1,11 @@
 import requests
+import os
+from dotenv import load_dotenv
 from dates import get_today, get_six_months_later
+
+load_dotenv(override=True)
+
+TEQUILA_API_KEY = os.getenv("TEQUILA_API_KEY")
 
 
 class Tequila:
@@ -18,7 +24,7 @@ class Tequila:
             str: The IATA code corresponding to the given city.
         """
         headers = {
-            "apikey": "X-ot7VWREtT8iFHWCmmKAmJcw7tpVEHy"
+            "apikey": TEQUILA_API_KEY
         }
         params = {
             "term": city
@@ -32,7 +38,7 @@ class Tequila:
         Searches for flights from an origin to a destination on a given date.
         """
         headers = {
-            "apikey": "X-ot7VWREtT8iFHWCmmKAmJcw7tpVEHy"
+            "apikey": TEQUILA_API_KEY
         }
         params = {
             "fly_from": origin,

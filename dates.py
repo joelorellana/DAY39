@@ -24,3 +24,8 @@ def get_six_months_later():
     """
     six_months_later = datetime.date.today() + datetime.timedelta(days=180)
     return six_months_later.strftime("%d/%m/%Y")
+
+
+print(get_today())
+print(get_tomorrow())
+print(get_six_months_later())
