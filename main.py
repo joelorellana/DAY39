@@ -1,7 +1,6 @@
 from sheety import Sheet
 from sms import SMS
 from tequila import Tequila
-from dates import get_today, get_tomorrow, get_six_months_later
 
 
 msg_sender = SMS()
@@ -19,5 +18,3 @@ for el in content:  # iterate through content to see if there are blank iata cod
         continue
 
 # check prices of flights
-
-
