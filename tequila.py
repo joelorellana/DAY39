@@ -1,7 +1,6 @@
 import requests
 import os
 from dotenv import load_dotenv
-from dates import get_today, get_six_months_later
 
 load_dotenv(override=True)
 
@@ -44,17 +43,20 @@ class Tequila:
             "fly_from": origin,
             "fly_to": destination,
             "date_from": from_date,
-            "date_to": to_date
+            "date_to": to_date,
+            "one_per_date": 1,
+            "one_for_city": 1
         }
 
         response = requests.get(self.url_search, headers=headers, params=params, verify=False)
         flights = response.json()["data"]
-        return flights
+        if len(flights) == 0:
+            return None
+        else:
+            price = flights[0]['price']
+        return price
 
+# prueba_tequila = Tequila()
 
-prueba_tequila = Tequila()
-
-vuelos = prueba_tequila.search_flights(origin='SAL', destination='TYO', from_date=get_today(),
-                                       to_date=get_six_months_later())
-
-print(vuelos)
+# vuelos = prueba_tequila.search_flights(origin='PDX', destination='TYO', from_date=get_tomorrow(),
+# to_date=get_six_months_later())

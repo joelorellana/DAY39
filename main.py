@@ -17,3 +17,7 @@ for el in content:  # iterate through content to see if there are blank iata cod
         my_sheet.write_sheet(el['id'], 'iataCode', iata_code)
     else:
         continue
+
+# check prices of flights
+
+
